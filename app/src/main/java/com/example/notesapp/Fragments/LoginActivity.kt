@@ -29,6 +29,10 @@ class LoginActivity : AppCompatActivity() {
             startActivity(Intent(this, SignUpActivity::class.java))
         }
 
+        binding.donthaveanacc.setOnClickListener {
+            startActivity(Intent(this, SignUpActivity::class.java))
+        }
+
         // Sign In
         binding.button.setOnClickListener {
             val email = binding.email.text.toString().trim()

@@ -1,60 +1,26 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!-- ===== PRIMARY THEME ===== -->
-    <color name="sage">#4F1787</color>
-    <color name="sage_dark">#3A1266</color>
-    <color name="sage_darker">#29104B</color>
+    <!-- Backgrounds -->
+    <color name="neutral_bg">#ECE6E0</color>
+    <color name="cardBackground">#FFFFFF</color>
 
-    <color name="green">#180161</color>
-    <color name="green_dark">#120146</color>
-    <color name="green_darker">#0C012E</color>
+    <!-- Primary -->
+    <color name="sage">#A0937D</color>
+    <color name="sage_dark">#E7D4B5</color>
+    <color name="sage_darker">#6E6556</color>
 
-    <!-- ===== BASE COLORS ===== -->
-    <color name="white">#FFFFFFFF</color>
-    <color name="black">#FF000000</color>
-
-    <!-- ===== MATERIAL DEFAULTS ===== -->
-    <color name="purple_200">#BB86FC</color>
-    <color name="purple_500">#6200EE</color>
-    <color name="purple_700">#3700B3</color>
-
-    <color name="teal_200">#03DAC5</color>
-    <color name="teal_700">#018786</color>
-
-    <!-- ===== ACCENTS ===== -->
-    <color name="yellow">#FFC801</color>
-    <color name="colorAccent">#4CAF50</color>
-    <color name="red_500">#D32F2F</color>
-
-    <!-- ===== ADDITIONAL UI COLORS ===== -->
-    <color name="colorPurple">#6C63FF</color>
-    <color name="colorIndigo">#303F9F</color>
-    <color name="colorBlueMidnight">#003366</color>
-
-    <!-- ===== GREYS ===== -->
-    <color name="gray_100">#F5F5F5</color>
-    <color name="gray_500">#9E9E9E</color>
+    <!-- Text -->
+    <color name="black">#121212</color>
+    <color name="white">#FFFFFF</color>
+    <color name="gray_500">#7A7A7A</color>
     <color name="gray_800">#424242</color>
-    <color name="colorGrey">#C9C9C9</color>
 
-    <!-- ===== GREEN SHADES ===== -->
-    <color name="green_500">#4CAF50</color>
-    <color name="green_700">#388E3C</color>
-    <color name="green_800">#2E7D32</color>
-
-    <!-- ===== PROFILE / CARD ===== -->
-    <color name="profilePrimaryDark">#FF3B30</color>
-    <color name="profileAccentColor">#F7F7F7</color>
-    <color name="profileBackground">#FFFFFF</color>
-    <color name="profileEditTextColor">#707070</color>
-
-    <color name="whiteTextColor">#FFFFFF</color>
-    <color name="blackTextColor">#000000</color>
-
-    <color name="cardBackground">#3949AB</color>
-
-    <color name="neutral_bg">#E0E0E0</color>
-
+    <!-- Greens -->
+    <color name="green">#81C784</color>
+    <color name="green_dark">#66BB6A</color>
+    <color name="green_darker">#4CAF50</color>
+    <color name="green_500">#81C784</color>
+    <color name="green_700">#66BB6A</color>
+    <color name="green_800">#4CAF50</color>
 
 </resources>

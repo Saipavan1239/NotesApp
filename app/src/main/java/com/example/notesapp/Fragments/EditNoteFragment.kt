@@ -71,12 +71,6 @@ class EditNoteFragment : Fragment(), MenuProvider {
                 setMessage("Are you sure you want to delete this note?")
                 setPositiveButton("Delete") { _, _ ->
                     notesViewModel.deleteNode(currentNote)
-                    FirebaseFirestore.getInstance()
-                        .collection("users")
-                        .document(FirebaseAuth.getInstance().currentUser!!.uid)
-                        .collection("notes")
-                        .document(currentNote.id.toString())
-                        .delete()
 
                     Toast.makeText(context,"Note Deleted",Toast.LENGTH_SHORT).show()
                     view?.findNavController()?.popBackStack(R.id.homeFragment, false)

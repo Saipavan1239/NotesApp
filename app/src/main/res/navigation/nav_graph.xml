@@ -18,6 +18,9 @@
         <action
             android:id="@+id/action_homeFragment_to_loginActivity"
             app:destination="@id/loginActivity" />
+        <action
+            android:id="@+id/action_homeFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
     </fragment>
     <fragment
         android:id="@+id/addNoteFragment"
@@ -47,4 +50,13 @@
         android:name="com.example.notesapp.Fragments.LoginActivity"
         android:label="activity_login"
         tools:layout="@layout/activity_login" />
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.example.notesapp.Fragments.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_profileFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
 </navigation>

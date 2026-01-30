@@ -10,15 +10,15 @@
 
 
     @Database(
-        entities = [Note::class],
-        version = 2,
+        entities = [Note::class, UserProfileEntity::class],
+        version = 3,
         exportSchema = false
     )
 
     abstract class NotesDatabase :RoomDatabase() {
 
         abstract fun getNoteDao(): NoteDao
-
+        abstract fun getUserProfileDao(): UserProfileDao
         companion object{
             @Volatile
             private var INSTANCE: NotesDatabase? = null
@@ -42,10 +42,11 @@
                 return Room.databaseBuilder(
                     context.applicationContext,
                     NotesDatabase::class.java,
-                    "note_db"
+                    "notes_db"
                 )
-                    .addMigrations(MIGRATION_1_2)
+                    .fallbackToDestructiveMigration()
                     .build()
+
             }
 
         }

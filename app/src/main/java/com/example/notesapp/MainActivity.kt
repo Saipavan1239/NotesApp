@@ -1,15 +1,24 @@
 package com.example.notesapp
 
 import android.content.SharedPreferences
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.os.Bundle
+import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
+import androidx.navigation.findNavController
 import com.example.notesapp.Database.NotesDatabase
 import com.example.notesapp.Repository.NoteRepository
+import com.example.notesapp.Repository.UserProfileRepository
 import com.example.notesapp.ViewModel.NoteViewModel
 import com.example.notesapp.ViewModel.NoteViewModelFactory
 import com.example.notesapp.databinding.ActivityMainBinding
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
+import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
 
@@ -17,26 +26,110 @@ class MainActivity : AppCompatActivity() {
     lateinit var noteViewModel: NoteViewModel
     private lateinit var sharedPreferences: SharedPreferences
 
+    private fun loadScaledBitmap(path: String, reqWidth: Int, reqHeight: Int): Bitmap {
+        val options = BitmapFactory.Options().apply {
+            inJustDecodeBounds = true
+        }
+        BitmapFactory.decodeFile(path, options)
+
+        options.inSampleSize = calculateInSampleSize(options, reqWidth, reqHeight)
+        options.inJustDecodeBounds = false
+
+        return BitmapFactory.decodeFile(path, options)
+    }
+
+    private fun calculateInSampleSize(
+        options: BitmapFactory.Options,
+        reqWidth: Int,
+        reqHeight: Int
+    ): Int {
+        val height = options.outHeight
+        val width = options.outWidth
+        var inSampleSize = 1
+
+        if (height > reqHeight || width > reqWidth) {
+            val halfHeight = height / 2
+            val halfWidth = width / 2
+
+            while (
+                halfHeight / inSampleSize >= reqHeight &&
+                halfWidth / inSampleSize >= reqWidth
+            ) {
+                inSampleSize *= 2
+            }
+        }
+        return inSampleSize
+    }
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        // Setup View Binding
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Initialize SharedPreferences
         sharedPreferences = getSharedPreferences("AppPreferences", MODE_PRIVATE)
 
-        // Setup ViewModel
+        // 🔥 ENSURE USER PROFILE EXISTS (ONCE)
+        FirebaseAuth.getInstance().currentUser?.let { user ->
+            UserProfileRepository(
+                NotesDatabase(this),
+                FirebaseFirestore.getInstance()
+            ).ensureUserProfileExists(user.uid)
+        }
         setUpViewModel()
 
-        // Apply saved theme
         applyTheme()
 
-        // Setup Theme Switch Button
         binding.themeSwitchButton.setOnClickListener {
             switchTheme()
         }
+
+        getProfilePhoto()
+
+        binding.profileButton.setOnClickListener {
+            val navController = findNavController(R.id.fragmentContainerView)
+            val currentDest = navController.currentDestination?.id
+
+            if (currentDest == R.id.homeFragment) {
+                navController.navigate(R.id.action_homeFragment_to_profileFragment)
+            }
+        }
+
+    }
+
+    override fun onResume() {
+        super.onResume()
+        getProfilePhoto()
+    }
+
+    private fun getProfilePhoto() {
+        FirebaseAuth.getInstance().currentUser?.let { user ->
+            val uid = user.uid
+
+            lifecycleScope.launch {
+                val profile =
+                    NotesDatabase(this@MainActivity)
+                        .getUserProfileDao()
+                        .getProfile(uid)
+
+                if (profile?.imagePath != null) {
+                    val bitmap = loadScaledBitmap(profile.imagePath, 120, 120)
+                    binding.profileButton.clearColorFilter()
+                    binding.profileButton.setImageBitmap(bitmap)
+                    binding.profileButton.scaleType = ImageView.ScaleType.CENTER_CROP
+                } else {
+                    // 🔥 fallback icon
+                    binding.profileButton.setImageResource(R.drawable.ic_person)
+                    binding.profileButton.setColorFilter(
+                        getColor(R.color.profile_icon)
+                    )
+                    binding.profileButton.scaleType = ImageView.ScaleType.CENTER_INSIDE
+                }
+
+            }
+        }
+
     }
 
     private fun setUpViewModel() {
@@ -55,10 +148,8 @@ class MainActivity : AppCompatActivity() {
         AppCompatDelegate.setDefaultNightMode(newNightMode)
         saveThemePreference(newNightMode)
 
-        // Update icon based on the new theme
         updateThemeSwitchIcon(newNightMode)
 
-        // Recreate the activity to apply theme changes
         recreate()
     }
 
@@ -66,7 +157,6 @@ class MainActivity : AppCompatActivity() {
         val savedNightMode = sharedPreferences.getInt("night_mode", AppCompatDelegate.MODE_NIGHT_NO)
         AppCompatDelegate.setDefaultNightMode(savedNightMode)
 
-        // Ensure binding is initialized before accessing it
         updateThemeSwitchIcon(savedNightMode)
     }
 
@@ -85,4 +175,6 @@ class MainActivity : AppCompatActivity() {
             apply()
         }
     }
+
+
 }

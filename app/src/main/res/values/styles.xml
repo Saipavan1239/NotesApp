@@ -14,6 +14,13 @@
         <item name="hintTextColor">?attr/colorOnSurface</item>
     </style>
 
+
+    <style name="CircleImageView">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+    </style>
+
+
     <!-- Inner EditText -->
     <style name="LoginTextInputInnerFieldStyle"
         parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">

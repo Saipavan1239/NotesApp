@@ -24,16 +24,20 @@
             app:layout_constraintEnd_toEndOf="parent">
 
             <!-- PROFILE ICON -->
-            <ImageView
+            <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/profileButton"
                 android:layout_width="36dp"
                 android:layout_height="36dp"
                 android:layout_marginEnd="16dp"
-                android:src="@drawable/ic_person"
-                android:background="@drawable/circle_background"
-                android:padding="6dp"
                 android:scaleType="centerCrop"
-                android:contentDescription="Profile" />
+                android:contentDescription="Profile"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                app:shapeAppearanceOverlay="@style/CircleImageView" />
+
+
+
+
+
 
             <!-- THEME SWITCH -->
             <ImageView

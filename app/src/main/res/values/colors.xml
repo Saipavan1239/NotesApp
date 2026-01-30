@@ -23,4 +23,19 @@
     <color name="green_700">#66BB6A</color>
     <color name="green_800">#4CAF50</color>
 
+    <color name="red_500">#EF5350</color>
+    <!-- Semantic text colors -->
+    <color name="text_primary">#121212</color>
+    <color name="text_secondary">#7A7A7A</color>
+    <color name="text_on_card">#121212</color>
+
+    <color name="icon_tint">#FFFFFF</color>
+    <color name="profile_text">#FFFFFF</color>
+    <color name="profile_subtext">#7A7A7A</color>
+
+    <color name="profile_icon">#424242</color>
+
+
+
+
 </resources>

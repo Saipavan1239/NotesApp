@@ -48,7 +48,10 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:hint="Email"
+            android:textColorHint="@color/gray_500"
             app:boxBackgroundMode="outline"
+            app:boxStrokeColor="@color/green_700"
+            app:hintTextColor="@color/text_secondary"
             app:boxCornerRadiusTopStart="12dp"
             app:boxCornerRadiusTopEnd="12dp"
             app:boxCornerRadiusBottomStart="12dp"
@@ -60,7 +63,7 @@
                 android:layout_height="wrap_content"
                 android:inputType="textEmailAddress"
                 android:padding="14dp"
-                android:textColor="@color/black"
+                android:textColor="@color/text_on_card"
                 android:textSize="16sp"/>
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -71,8 +74,11 @@
             android:layout_marginTop="12dp"
             android:hint="Password"
             app:boxBackgroundMode="outline"
+            app:boxStrokeColor="@color/green_700"
+            app:hintTextColor="@color/text_secondary"
             app:boxCornerRadiusTopStart="12dp"
             app:boxCornerRadiusTopEnd="12dp"
+            android:textColorHint="@color/gray_500"
             app:boxCornerRadiusBottomStart="12dp"
             app:boxCornerRadiusBottomEnd="12dp"
             app:passwordToggleEnabled="true">
@@ -83,8 +89,8 @@
                 android:layout_height="wrap_content"
                 android:inputType="textPassword"
                 android:padding="14dp"
-                android:textColor="@color/black"
-                android:textSize="16sp"/>
+                android:textColor="@color/text_on_card"
+                android:textSize="16sp" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <!-- Forgot -->

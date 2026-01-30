@@ -21,8 +21,23 @@
     <color name="green_dark">#66BB6A</color>
     <color name="green_darker">#4CAF50</color>
     <color name="green_500">#81C784</color>
-    <color name="green_700">#66BB6A</color>
+    <color name="green_700">#7DE38A</color>
     <color name="green_800">#4CAF50</color>
+
+    <color name="red_500">#C62828</color>
+
+    <!-- Semantic text colors -->
+    <color name="text_primary">#FFFFFF</color>
+    <color name="text_secondary">#B0B0B0</color>
+    <color name="text_on_card">#FFFFFF</color>
+
+    <color name="icon_tint">#FFFFFF</color>
+    <color name="profile_text">#FFFFFF</color>
+    <color name="profile_subtext">#B0B0B0</color>
+    <color name="profile_icon">#FFFFFF</color>
+
+
+
 
 </resources>
 
